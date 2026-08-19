@@ -19,10 +19,22 @@ public class ShippingProviderConfigController {
 
     private final ShippingProviderConfigService service;
 
+    /**
+     * Creates a new {@code ShippingProviderConfigController}.
+     *
+     * @param service service
+     */
     public ShippingProviderConfigController(ShippingProviderConfigService service) {
         this.service = service;
     }
 
+    /**
+     * Handles GET.
+     *
+     * @param userId caller user id from the gateway ({@code X-User-Id})
+     * @param userRole caller role from the gateway ({@code X-User-Role})
+     * @return HTTP response
+     */
     @GetMapping
     public ResponseEntity<List<ShippingProviderConfig>> findAll(
             @RequestHeader("X-User-Id") String userId,
@@ -30,6 +42,14 @@ public class ShippingProviderConfigController {
         return ResponseEntity.ok(service.findAll());
     }
 
+    /**
+     * Handles {@code GET /{id}}.
+     *
+     * @param id resource identifier
+     * @param userId caller user id from the gateway ({@code X-User-Id})
+     * @param userRole caller role from the gateway ({@code X-User-Role})
+     * @return HTTP response
+     */
     @GetMapping("/{id}")
     public ResponseEntity<ShippingProviderConfig> findById(
             @PathVariable String id,
@@ -38,6 +58,14 @@ public class ShippingProviderConfigController {
         return ResponseEntity.ok(service.findById(id));
     }
 
+    /**
+     * Handles {@code GET /store/{storeId}}.
+     *
+     * @param storeId store (tenant) identifier
+     * @param userId caller user id from the gateway ({@code X-User-Id})
+     * @param userRole caller role from the gateway ({@code X-User-Role})
+     * @return HTTP response
+     */
     @GetMapping("/store/{storeId}")
     public ResponseEntity<List<ShippingProviderConfig>> findByStoreId(
             @PathVariable String storeId,
@@ -46,6 +74,14 @@ public class ShippingProviderConfigController {
         return ResponseEntity.ok(service.findByStoreId(storeId));
     }
 
+    /**
+     * Handles POST.
+     *
+     * @param request request payload
+     * @param userId caller user id from the gateway ({@code X-User-Id})
+     * @param userRole caller role from the gateway ({@code X-User-Role})
+     * @return HTTP response
+     */
     @PostMapping
     public ResponseEntity<ShippingProviderConfig> create(
             @Valid @RequestBody ShippingProviderConfigRequest request,
@@ -54,6 +90,15 @@ public class ShippingProviderConfigController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 
+    /**
+     * Handles {@code PUT /{id}}.
+     *
+     * @param id resource identifier
+     * @param request request payload
+     * @param userId caller user id from the gateway ({@code X-User-Id})
+     * @param userRole caller role from the gateway ({@code X-User-Role})
+     * @return HTTP response
+     */
     @PutMapping("/{id}")
     public ResponseEntity<ShippingProviderConfig> update(
             @PathVariable String id,
@@ -63,6 +108,14 @@ public class ShippingProviderConfigController {
         return ResponseEntity.ok(service.update(id, request));
     }
 
+    /**
+     * Handles {@code DELETE /{id}}.
+     *
+     * @param id resource identifier
+     * @param userId caller user id from the gateway ({@code X-User-Id})
+     * @param userRole caller role from the gateway ({@code X-User-Role})
+     * @return HTTP response
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(
             @PathVariable String id,

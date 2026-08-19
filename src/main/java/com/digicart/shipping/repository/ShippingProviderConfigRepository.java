@@ -12,6 +12,19 @@ import java.util.Optional;
  */
 @Repository
 public interface ShippingProviderConfigRepository extends JpaRepository<ShippingProviderConfig, String> {
+    /**
+     * Finds by store id.
+     *
+     * @param storeId store (tenant) identifier
+     * @return matching records
+     */
     List<ShippingProviderConfig> findByStoreId(String storeId);
+    /**
+     * Finds by store id and provider.
+     *
+     * @param storeId store (tenant) identifier
+     * @param provider provider
+     * @return the value if present
+     */
     Optional<ShippingProviderConfig> findByStoreIdAndProvider(String storeId, String provider);
 }

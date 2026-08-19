@@ -12,5 +12,11 @@ import java.util.List;
  */
 @Repository
 public interface ShipperConfigRepository extends JpaRepository<ShipperConfig, String> {
+    /**
+     * Finds by store id.
+     *
+     * @param storeId store (tenant) identifier
+     * @return the value if present
+     */
     Optional<ShipperConfig> findByStoreId(String storeId);
 }

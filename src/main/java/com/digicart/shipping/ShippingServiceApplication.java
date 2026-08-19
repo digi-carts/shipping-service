@@ -10,7 +10,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 @EnableJpaAuditing
 public class ShippingServiceApplication {
-
+    /**
+     * Spring Boot process entry point.
+     *
+     * @param args args
+     */
     public static void main(String[] args) {
         SpringApplication.run(ShippingServiceApplication.class, args);
     }
