@@ -14,7 +14,7 @@ import java.util.List;
  * REST controller exposing shipping provider config HTTP APIs for <em>shipping-service</em>.
  */
 @RestController
-@RequestMapping("/api/provider-config")
+@RequestMapping("/api/shipping/providers")
 public class ShippingProviderConfigController {
 
     private final ShippingProviderConfigService service;

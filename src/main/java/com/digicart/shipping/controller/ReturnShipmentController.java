@@ -14,7 +14,7 @@ import java.util.List;
  * REST controller exposing return shipment HTTP APIs for <em>shipping-service</em>.
  */
 @RestController
-@RequestMapping("/api/return-shipments")
+@RequestMapping("/api/shipping/returns")
 public class ReturnShipmentController {
 
     private final ReturnShipmentService service;

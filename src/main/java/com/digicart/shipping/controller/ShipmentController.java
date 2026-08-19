@@ -14,7 +14,7 @@ import java.util.List;
  * REST controller exposing shipment HTTP APIs for <em>shipping-service</em>.
  */
 @RestController
-@RequestMapping("/api/shipments")
+@RequestMapping("/api/shipping")
 public class ShipmentController {
 
     private final ShipmentService service;

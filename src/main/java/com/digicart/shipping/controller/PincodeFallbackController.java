@@ -14,7 +14,7 @@ import java.util.List;
  * REST controller exposing pincode fallback HTTP APIs for <em>shipping-service</em>.
  */
 @RestController
-@RequestMapping("/api/pincode-fallback")
+@RequestMapping("/api/shipping/pincodes")
 public class PincodeFallbackController {
 
     private final PincodeFallbackService service;
