@@ -2,6 +2,9 @@ package com.digicart.shipping.entity;
 
 import jakarta.persistence.*;
 
+/**
+ * JPA entity mapped in this service schema (Pincode Fallback).
+ */
 @Entity
 @Table(name = "pincode_fallback", schema = "shipping_svc")
 public class PincodeFallback {

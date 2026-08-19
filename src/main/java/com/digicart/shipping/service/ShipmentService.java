@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Application service implementing shipment use cases for <em>shipping-service</em>.
+ */
 @Service
 public class ShipmentService {
 

@@ -3,6 +3,9 @@ package com.digicart.shipping.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+/**
+ * Request/response DTO: Pincode Fallback Request.
+ */
 public class PincodeFallbackRequest {
 
     @NotBlank

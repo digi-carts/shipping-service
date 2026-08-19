@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST controller exposing shipping provider config HTTP APIs for <em>shipping-service</em>.
+ */
 @RestController
 @RequestMapping("/api/provider-config")
 public class ShippingProviderConfigController {

@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Spring Data JPA repository for shipment  persistence.
+ */
 @Repository
 public interface ShipmentRepository extends JpaRepository<Shipment, String> {
     List<Shipment> findByStoreId(String storeId);
