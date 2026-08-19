@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST controller exposing shipment HTTP APIs for <em>shipping-service</em>.
+ */
 @RestController
 @RequestMapping("/api/shipments")
 public class ShipmentController {

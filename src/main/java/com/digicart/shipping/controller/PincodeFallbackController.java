@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST controller exposing pincode fallback HTTP APIs for <em>shipping-service</em>.
+ */
 @RestController
 @RequestMapping("/api/pincode-fallback")
 public class PincodeFallbackController {

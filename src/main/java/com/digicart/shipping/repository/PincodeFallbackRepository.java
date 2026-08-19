@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Spring Data JPA repository for pincode fallback  persistence.
+ */
 @Repository
 public interface PincodeFallbackRepository extends JpaRepository<PincodeFallback, String> {
     List<PincodeFallback> findByStoreId(String storeId);

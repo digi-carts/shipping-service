@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 import java.util.List;
 
+/**
+ * Spring Data JPA repository for shipper config  persistence.
+ */
 @Repository
 public interface ShipperConfigRepository extends JpaRepository<ShipperConfig, String> {
     Optional<ShipperConfig> findByStoreId(String storeId);
