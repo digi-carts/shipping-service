@@ -16,27 +16,60 @@ public class ReturnShipmentService {
 
     private final ReturnShipmentRepository repository;
 
+    /**
+     * Creates a new {@code ReturnShipmentService}.
+     *
+     * @param repository repository
+     */
     public ReturnShipmentService(ReturnShipmentRepository repository) {
         this.repository = repository;
     }
 
+    /**
+     * Finds all.
+     * @return matching records
+     */
     public List<ReturnShipment> findAll() {
         return repository.findAll();
     }
 
+    /**
+     * Finds by id.
+     *
+     * @param id resource identifier
+     * @return the return shipment
+     */
     public ReturnShipment findById(String id) {
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("ReturnShipment not found: " + id));
     }
 
+    /**
+     * Finds by store id.
+     *
+     * @param storeId store (tenant) identifier
+     * @return matching records
+     */
     public List<ReturnShipment> findByStoreId(String storeId) {
         return repository.findByStoreId(storeId);
     }
 
+    /**
+     * Finds by order id.
+     *
+     * @param orderId order identifier
+     * @return matching records
+     */
     public List<ReturnShipment> findByOrderId(String orderId) {
         return repository.findByOrderId(orderId);
     }
 
+    /**
+     * Creates a new record.
+     *
+     * @param req request payload
+     * @return the return shipment
+     */
     public ReturnShipment create(ReturnShipmentRequest req) {
         ReturnShipment entity = new ReturnShipment();
         entity.setStoreId(req.getStoreId());
@@ -48,6 +81,13 @@ public class ReturnShipmentService {
         return repository.save(entity);
     }
 
+    /**
+     * Updates an existing record.
+     *
+     * @param id resource identifier
+     * @param req request payload
+     * @return the return shipment
+     */
     public ReturnShipment update(String id, ReturnShipmentRequest req) {
         ReturnShipment entity = findById(id);
         if (req.getProvider() != null) entity.setProvider(req.getProvider());
@@ -56,6 +96,11 @@ public class ReturnShipmentService {
         return repository.save(entity);
     }
 
+    /**
+     * Deletes the record.
+     *
+     * @param id resource identifier
+     */
     public void delete(String id) {
         findById(id);
         repository.deleteById(id);

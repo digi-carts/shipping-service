@@ -12,6 +12,19 @@ import java.util.Optional;
  */
 @Repository
 public interface PincodeFallbackRepository extends JpaRepository<PincodeFallback, String> {
+    /**
+     * Finds by store id.
+     *
+     * @param storeId store (tenant) identifier
+     * @return matching records
+     */
     List<PincodeFallback> findByStoreId(String storeId);
+    /**
+     * Finds by store id and pincode.
+     *
+     * @param storeId store (tenant) identifier
+     * @param pincode pincode
+     * @return the value if present
+     */
     Optional<PincodeFallback> findByStoreIdAndPincode(String storeId, String pincode);
 }

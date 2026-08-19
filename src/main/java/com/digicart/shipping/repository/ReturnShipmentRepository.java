@@ -12,7 +12,25 @@ import java.util.Optional;
  */
 @Repository
 public interface ReturnShipmentRepository extends JpaRepository<ReturnShipment, String> {
+    /**
+     * Finds by store id.
+     *
+     * @param storeId store (tenant) identifier
+     * @return matching records
+     */
     List<ReturnShipment> findByStoreId(String storeId);
+    /**
+     * Finds by order id.
+     *
+     * @param orderId order identifier
+     * @return matching records
+     */
     List<ReturnShipment> findByOrderId(String orderId);
+    /**
+     * Finds by return id.
+     *
+     * @param returnId return id
+     * @return the value if present
+     */
     Optional<ReturnShipment> findByReturnId(String returnId);
 }

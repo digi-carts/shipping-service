@@ -19,10 +19,22 @@ public class ReturnShipmentController {
 
     private final ReturnShipmentService service;
 
+    /**
+     * Creates a new {@code ReturnShipmentController}.
+     *
+     * @param service service
+     */
     public ReturnShipmentController(ReturnShipmentService service) {
         this.service = service;
     }
 
+    /**
+     * Handles GET.
+     *
+     * @param userId caller user id from the gateway ({@code X-User-Id})
+     * @param userRole caller role from the gateway ({@code X-User-Role})
+     * @return HTTP response
+     */
     @GetMapping
     public ResponseEntity<List<ReturnShipment>> findAll(
             @RequestHeader("X-User-Id") String userId,
@@ -30,6 +42,14 @@ public class ReturnShipmentController {
         return ResponseEntity.ok(service.findAll());
     }
 
+    /**
+     * Handles {@code GET /{id}}.
+     *
+     * @param id resource identifier
+     * @param userId caller user id from the gateway ({@code X-User-Id})
+     * @param userRole caller role from the gateway ({@code X-User-Role})
+     * @return HTTP response
+     */
     @GetMapping("/{id}")
     public ResponseEntity<ReturnShipment> findById(
             @PathVariable String id,
@@ -38,6 +58,14 @@ public class ReturnShipmentController {
         return ResponseEntity.ok(service.findById(id));
     }
 
+    /**
+     * Handles {@code GET /store/{storeId}}.
+     *
+     * @param storeId store (tenant) identifier
+     * @param userId caller user id from the gateway ({@code X-User-Id})
+     * @param userRole caller role from the gateway ({@code X-User-Role})
+     * @return HTTP response
+     */
     @GetMapping("/store/{storeId}")
     public ResponseEntity<List<ReturnShipment>> findByStoreId(
             @PathVariable String storeId,
@@ -46,6 +74,14 @@ public class ReturnShipmentController {
         return ResponseEntity.ok(service.findByStoreId(storeId));
     }
 
+    /**
+     * Handles {@code GET /order/{orderId}}.
+     *
+     * @param orderId order identifier
+     * @param userId caller user id from the gateway ({@code X-User-Id})
+     * @param userRole caller role from the gateway ({@code X-User-Role})
+     * @return HTTP response
+     */
     @GetMapping("/order/{orderId}")
     public ResponseEntity<List<ReturnShipment>> findByOrderId(
             @PathVariable String orderId,
@@ -54,6 +90,14 @@ public class ReturnShipmentController {
         return ResponseEntity.ok(service.findByOrderId(orderId));
     }
 
+    /**
+     * Handles POST.
+     *
+     * @param request request payload
+     * @param userId caller user id from the gateway ({@code X-User-Id})
+     * @param userRole caller role from the gateway ({@code X-User-Role})
+     * @return HTTP response
+     */
     @PostMapping
     public ResponseEntity<ReturnShipment> create(
             @Valid @RequestBody ReturnShipmentRequest request,
@@ -62,6 +106,15 @@ public class ReturnShipmentController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 
+    /**
+     * Handles {@code PUT /{id}}.
+     *
+     * @param id resource identifier
+     * @param request request payload
+     * @param userId caller user id from the gateway ({@code X-User-Id})
+     * @param userRole caller role from the gateway ({@code X-User-Role})
+     * @return HTTP response
+     */
     @PutMapping("/{id}")
     public ResponseEntity<ReturnShipment> update(
             @PathVariable String id,
@@ -71,6 +124,14 @@ public class ReturnShipmentController {
         return ResponseEntity.ok(service.update(id, request));
     }
 
+    /**
+     * Handles {@code DELETE /{id}}.
+     *
+     * @param id resource identifier
+     * @param userId caller user id from the gateway ({@code X-User-Id})
+     * @param userRole caller role from the gateway ({@code X-User-Role})
+     * @return HTTP response
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(
             @PathVariable String id,

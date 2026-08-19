@@ -16,23 +16,50 @@ public class PincodeFallbackService {
 
     private final PincodeFallbackRepository repository;
 
+    /**
+     * Creates a new {@code PincodeFallbackService}.
+     *
+     * @param repository repository
+     */
     public PincodeFallbackService(PincodeFallbackRepository repository) {
         this.repository = repository;
     }
 
+    /**
+     * Finds all.
+     * @return matching records
+     */
     public List<PincodeFallback> findAll() {
         return repository.findAll();
     }
 
+    /**
+     * Finds by id.
+     *
+     * @param id resource identifier
+     * @return the pincode fallback
+     */
     public PincodeFallback findById(String id) {
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("PincodeFallback not found: " + id));
     }
 
+    /**
+     * Finds by store id.
+     *
+     * @param storeId store (tenant) identifier
+     * @return matching records
+     */
     public List<PincodeFallback> findByStoreId(String storeId) {
         return repository.findByStoreId(storeId);
     }
 
+    /**
+     * Creates a new record.
+     *
+     * @param req request payload
+     * @return the pincode fallback
+     */
     public PincodeFallback create(PincodeFallbackRequest req) {
         PincodeFallback entity = new PincodeFallback();
         entity.setStoreId(req.getStoreId());
@@ -42,6 +69,13 @@ public class PincodeFallbackService {
         return repository.save(entity);
     }
 
+    /**
+     * Updates an existing record.
+     *
+     * @param id resource identifier
+     * @param req request payload
+     * @return the pincode fallback
+     */
     public PincodeFallback update(String id, PincodeFallbackRequest req) {
         PincodeFallback entity = findById(id);
         if (req.getPincode() != null) entity.setPincode(req.getPincode());
@@ -50,6 +84,11 @@ public class PincodeFallbackService {
         return repository.save(entity);
     }
 
+    /**
+     * Deletes the record.
+     *
+     * @param id resource identifier
+     */
     public void delete(String id) {
         findById(id);
         repository.deleteById(id);
