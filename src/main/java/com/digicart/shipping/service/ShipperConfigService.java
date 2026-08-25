@@ -7,6 +7,7 @@ import com.digicart.shipping.repository.ShipperConfigRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Application service implementing shipper config use cases for <em>shipping-service</em>.
@@ -25,13 +26,17 @@ public class ShipperConfigService {
     }
 
     public ShipperConfig findById(String id) {
-        return repository.findById(id)
+        return repository.findById(UUID.fromString(id))
                 .orElseThrow(() -> new EntityNotFoundException("ShipperConfig not found: " + id));
     }
 
     public ShipperConfig findByStoreId(String storeId) {
         return repository.findByStoreId(storeId)
                 .orElseThrow(() -> new EntityNotFoundException("ShipperConfig not found for store: " + storeId));
+    }
+
+    public java.util.Optional<ShipperConfig> findByStoreIdOptional(String storeId) {
+        return repository.findByStoreId(storeId);
     }
 
     public ShipperConfig create(ShipperConfigRequest req) {
@@ -51,8 +56,23 @@ public class ShipperConfigService {
         return repository.save(entity);
     }
 
+    public ShipperConfig upsertByStoreId(String storeId, String pickupPincode, Double defaultWeight) {
+        ShipperConfig entity = repository.findByStoreId(storeId).orElseGet(ShipperConfig::new);
+        entity.setStoreId(storeId);
+        if (pickupPincode != null) entity.setPickupPincode(pickupPincode);
+        if (defaultWeight != null) entity.setDefaultWeight(defaultWeight);
+        return repository.save(entity);
+    }
+
+    public ShipperConfig activateProvider(String storeId, String provider) {
+        ShipperConfig entity = repository.findByStoreId(storeId)
+                .orElseThrow(() -> new EntityNotFoundException("ShipperConfig not found for store: " + storeId));
+        entity.setActiveProvider(provider);
+        return repository.save(entity);
+    }
+
     public void delete(String id) {
         findById(id);
-        repository.deleteById(id);
+        repository.deleteById(UUID.fromString(id));
     }
 }
