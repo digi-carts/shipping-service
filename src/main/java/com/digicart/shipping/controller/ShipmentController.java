@@ -122,19 +122,4 @@ public class ShipmentController {
         return ResponseEntity.ok(updated);
     }
 
-    @GetMapping("/config")
-    public ResponseEntity<Map<String, Object>> getConfig(
-            @RequestHeader("X-Store-Id") String storeId) {
-        return shipperConfigService.findByStoreIdOptional(storeId)
-                .map(c -> {
-                    Map<String, Object> cfg = new java.util.LinkedHashMap<>();
-                    cfg.put("id", c.getId().toString());
-                    cfg.put("storeId", c.getStoreId());
-                    cfg.put("pickupPincode", c.getPickupPincode());
-                    cfg.put("activeProvider", c.getActiveProvider());
-                    cfg.put("defaultWeight", c.getDefaultWeight());
-                    return ResponseEntity.ok(Map.of("config", cfg));
-                })
-                .orElse(ResponseEntity.ok(Map.of("config", (Object) null)));
-    }
 }
