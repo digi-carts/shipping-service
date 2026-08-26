@@ -1,6 +1,7 @@
 package com.digicart.shipping.entity;
 
 import jakarta.persistence.*;
+import java.util.UUID;
 
 /**
  * JPA entity mapped in this service schema (Pincode Fallback).
@@ -11,7 +12,7 @@ public class PincodeFallback {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
     @Column(name = "store_id", nullable = false)
     private String storeId;
@@ -27,8 +28,8 @@ public class PincodeFallback {
 
     public PincodeFallback() {}
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public UUID getId() { return id; }
+    public void setId(UUID id) { this.id = id; }
 
     public String getStoreId() { return storeId; }
     public void setStoreId(String storeId) { this.storeId = storeId; }

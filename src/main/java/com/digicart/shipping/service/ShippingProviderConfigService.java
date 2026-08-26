@@ -7,6 +7,7 @@ import com.digicart.shipping.repository.ShippingProviderConfigRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Application service implementing shipping provider config use cases for <em>shipping-service</em>.
@@ -25,7 +26,7 @@ public class ShippingProviderConfigService {
     }
 
     public ShippingProviderConfig findById(String id) {
-        return repository.findById(id)
+        return repository.findById(UUID.fromString(id))
                 .orElseThrow(() -> new EntityNotFoundException("ShippingProviderConfig not found: " + id));
     }
 
@@ -49,8 +50,28 @@ public class ShippingProviderConfigService {
         return repository.save(entity);
     }
 
+    public ShippingProviderConfig toggleEnabled(String storeId, String provider) {
+        ShippingProviderConfig entity = repository.findByStoreIdAndProvider(storeId, provider)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "ShippingProviderConfig not found for store " + storeId + " and provider " + provider));
+        entity.setEnabled(!entity.getEnabled());
+        return repository.save(entity);
+    }
+
+    public ShippingProviderConfig upsertCredentials(String storeId, String provider, String credentialsJson) {
+        ShippingProviderConfig entity = repository.findByStoreIdAndProvider(storeId, provider)
+                .orElseGet(() -> {
+                    ShippingProviderConfig c = new ShippingProviderConfig();
+                    c.setStoreId(storeId);
+                    c.setProvider(provider);
+                    return c;
+                });
+        entity.setCredentials(credentialsJson);
+        return repository.save(entity);
+    }
+
     public void delete(String id) {
         findById(id);
-        repository.deleteById(id);
+        repository.deleteById(UUID.fromString(id));
     }
 }
