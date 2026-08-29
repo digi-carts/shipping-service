@@ -6,9 +6,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
+/**
+ * Spring Data JPA repository for return shipment  persistence.
+ */
 @Repository
-public interface ReturnShipmentRepository extends JpaRepository<ReturnShipment, String> {
+public interface ReturnShipmentRepository extends JpaRepository<ReturnShipment, UUID> {
     List<ReturnShipment> findByStoreId(String storeId);
     List<ReturnShipment> findByOrderId(String orderId);
     Optional<ReturnShipment> findByReturnId(String returnId);

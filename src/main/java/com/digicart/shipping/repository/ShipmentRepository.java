@@ -6,9 +6,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
+/**
+ * Spring Data JPA repository for shipment  persistence.
+ */
 @Repository
-public interface ShipmentRepository extends JpaRepository<Shipment, String> {
+public interface ShipmentRepository extends JpaRepository<Shipment, UUID> {
     List<Shipment> findByStoreId(String storeId);
     Optional<Shipment> findByOrderId(String orderId);
+    Optional<Shipment> findByAwbNumber(String awbNumber);
 }

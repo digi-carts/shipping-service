@@ -2,6 +2,9 @@ package com.digicart.shipping.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
+/**
+ * Request/response DTO: Shipment Request.
+ */
 public class ShipmentRequest {
 
     @NotBlank

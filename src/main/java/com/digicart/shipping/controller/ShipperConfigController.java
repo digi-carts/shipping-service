@@ -9,9 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
+/**
+ * REST controller exposing shipper config HTTP APIs for <em>shipping-service</em>.
+ */
 @RestController
-@RequestMapping("/api/shipper-config")
+@RequestMapping("/api/shipping/shippers")
 public class ShipperConfigController {
 
     private final ShipperConfigService service;

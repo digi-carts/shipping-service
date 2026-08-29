@@ -7,7 +7,11 @@ import com.digicart.shipping.repository.ReturnShipmentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
+/**
+ * Application service implementing return shipment use cases for <em>shipping-service</em>.
+ */
 @Service
 public class ReturnShipmentService {
 
@@ -22,7 +26,7 @@ public class ReturnShipmentService {
     }
 
     public ReturnShipment findById(String id) {
-        return repository.findById(id)
+        return repository.findById(UUID.fromString(id))
                 .orElseThrow(() -> new EntityNotFoundException("ReturnShipment not found: " + id));
     }
 
@@ -55,6 +59,6 @@ public class ReturnShipmentService {
 
     public void delete(String id) {
         findById(id);
-        repository.deleteById(id);
+        repository.deleteById(UUID.fromString(id));
     }
 }

@@ -7,7 +7,11 @@ import com.digicart.shipping.repository.PincodeFallbackRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
+/**
+ * Application service implementing pincode fallback use cases for <em>shipping-service</em>.
+ */
 @Service
 public class PincodeFallbackService {
 
@@ -22,7 +26,7 @@ public class PincodeFallbackService {
     }
 
     public PincodeFallback findById(String id) {
-        return repository.findById(id)
+        return repository.findById(UUID.fromString(id))
                 .orElseThrow(() -> new EntityNotFoundException("PincodeFallback not found: " + id));
     }
 
@@ -49,6 +53,6 @@ public class PincodeFallbackService {
 
     public void delete(String id) {
         findById(id);
-        repository.deleteById(id);
+        repository.deleteById(UUID.fromString(id));
     }
 }
